@@ -45,9 +45,16 @@
 								<p><span class="image left"><img src="images/dc2_training_vs_application.png" alt="" /></span>The basic idea is to see if we can add simulated galaxies to the training sample to cover previously unrepresented regions of photometry and redshift. To test this idea, we use two simulations. The DC2 simulation is a stand-in for real LSST data, and we split this into an LSST-like data sample and a training sample with photometry and redshifts like HSC galaxies with matched spectroscopic redshifts. This is the training sample used to estimate photo-z's in the above plot. Color magnitude diagrams of these two samples are also shown in the figure on the left.  To mimic adding simulated data to a training sample of real data, we need a second simulation that generates galaxy SEDs in an independent way from the DC2 simulation. This difference between the two simulations mimics the difference between one simulation and real data. For this second simulation, we use the Buzzard simulation.</p>
 								<p>To identify regions for augmenting, we use the i-band magnitudes and g-z colors to make a color-magnitude diagram of the training sample. We use three photometric selection criteria: dim galaxies (i-band > 23) blue galaxies, (g-z color < 1.75) or a set of two lines fit to the shape of the top of the CMD of the training sample. These photometric selection criteria can also be combined with a redshift selection criterion. Since the training sample has very few galaxies with redshift above 1.0, we can also select galaxies with z > 1.0. For each set of selection criteria, we select 10,000 galaxies from the Buzzard catalog that satisfy the selection criteria and add them to the initial training sample. We then retrain the photo-z model and estimate a new set of photo-z's for the application sample. We then calculate the outlier fraction, NMAD, bias and catastrophic outlier fraction for the resulting photo-z estimates to compare the different trainings.</p>
 								<h2>Results</h2>
+								<p>The most restrictive set of selection criteria, combing the color and magnitude selection with a redshift selection, produces the best photo-z's, shown below. The training sample obtained with this selection is also shown. The outlier fraction is reduced from the unaugmented value by ~50%. When considering the fact that the outlier fraction of the fully representative training sample isn't actually 0%, the augmentation can recover nearly 70% of the difference with the fully representative case. As a proof-of-concept exercise with fairly simple selection criteria, this is incredibly successful! </p>
+								<div class="box alt">
+											<div class="row gtr-uniform">
+												<div class="col-12"><span class="image fit"><img src="images/best_augmented_training_sample_and_photoz.png" alt="" /></span></div>
+											</div>
+										</div>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="https://arxiv.org/abs/2402.15551" class="button primary">Link to Arxiv</a></li>
+										<li><a href="https://arxiv.org/abs/2402.15551" class="button primary">Link to Arxiv version of the paper</a></li>
+										<li><a href="https://iopscience.iop.org/article/10.3847/2041-8213/ad4039" class="button primary">Link to publisher version of the paper</a></li>
 									</ul>
 								</footer>
 							</section>
