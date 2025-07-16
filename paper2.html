@@ -23,14 +23,24 @@
 						<p>Irene Moskowitz, Eric Gawiser, John Franklin Crenshaw, Brett H. Andrews, Alex I. Malz, Samuel Schmidt and the Dark Energy Science Collaboration</p>
 					</header>
 
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html#intro">Home</a></li>
+							<li><a href="index.html#first" class="active">My Research</a></li>
+							<li><a href="index.html#second">My Hobbies</a></li>
+							<li><a href="index.html#cta">Cats!</a></li>
+						</ul>
+					</nav>
+
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Content -->
 							<section id="content" class="main">
 								<h2>Motivation</h2>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis fames ac ante ipsum primis in faucibus.</p>
-								<p>Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Consequat leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit enim turpis lorem ipsum dolor sit amet feugiat. Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet est velit quis lorem.</p>
+								<p>When spectra aren't available for measuring redshifts, they can be estimated using photometry, called photometric redshifts, or photo-z's. There are two primary ways of estimating photo-z's: template-fitting and machine learning. Template fitting methods require a set of galaxy SED templates and the filter transmission curves for your data set as inputs. The photometry in each band can then be calculated from each SED in the template set at various redshifts. For each galaxy in your photometric sample, the photometry is compared to the photometry generated from the SED template set to find the best fitting template and redshift. In the case of machine learning, an input training sample with both photometry and spectroscopic redshifts is required. This training sample is then used to learn the relationship between the photometry and redshift using your favorite machine learning algorithm. The learned relationship is then applied to your photometric data to estimate redshifts.</p>
+								<p>The reliance of machine learning methods on a spectroscopic tranining sample requires that training sample to be representative of the data you want to estimate redshifts for. However, existing spectroscopic catalogs are not representative of anticipated LSST data. Spectra are easier to obtain for brighter, redder galaxies, which also tend to be at lower redshift. Even DESI, which will obtain large quantities of high quality spectra, won't be as deep as LSST, meaning that LSST will be reliant on non-representative training samples for photo-z estimation. A non-representative training sample would lead to catastrophically poor photo-z estimates for a large portion of LSST galaxies, leading to reduced constraining power and bias in cosmological parameters obtained from LSST data. It is thus very important to find a way to improve the photo-z estimates without relying on a large volume of new spectra for training.</p>
 								<h2>Methodology</h2>
 								<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
 								<h2>Results</h2>
