@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Stellar by HTML5 UP</title>
+		<title>Mitigating bias from n(z) misestimation for 3x2pt</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -19,54 +19,48 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>Generic</h1>
-						<p>Ipsum dolor sit amet nullam</p>
+						<h1>Improving Photometric Redshift Estimates with Training Sample Augmentation</h1>
+						<p>Irene Moskowitz, Eric Gawiser, John Franklin Crenshaw, Brett H. Andrews, Alex I. Malz, Samuel Schmidt and the Dark Energy Science Collaboration</p>
 					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html#intro">Home</a></li>
+							<li><a href="index.html#first" class="active">My Research</a></li>
+							<li><a href="index.html#second">My Hobbies</a></li>
+							<li><a href="index.html#cta">Cats!</a></li>
+						</ul>
+					</nav>
 
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Content -->
 							<section id="content" class="main">
-								<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
-								<h2>Magna feugiat lorem</h2>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis fames ac ante ipsum primis in faucibus.</p>
-								<p>Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Consequat leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit enim turpis lorem ipsum dolor sit amet feugiat. Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet est velit quis lorem.</p>
-								<h2>Tempus veroeros</h2>
-								<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+								<h2>Motivation</h2>
+								<p>When spectra aren't available for measuring redshifts, they can be estimated using photometry, called photometric redshifts, or photo-z's. There are two primary ways of estimating photo-z's: template-fitting and machine learning. Template fitting methods require a set of galaxy SED templates and the filter transmission curves for your data set as inputs. The photometry in each band can then be calculated from each SED in the template set at various redshifts. For each galaxy in your photometric sample, the photometry is compared to the photometry generated from the SED template set to find the best fitting template and redshift. In the case of machine learning, an input training sample with both photometry and spectroscopic redshifts is required. This training sample is then used to learn the relationship between the photometry and redshift using your favorite machine learning algorithm. The learned relationship is then applied to your photometric data to estimate redshifts.</p>
+								<p><span class="image right"><img src="images/representative_vs_unaugmented_training.png" alt="" /></span>The reliance of machine learning methods on a spectroscopic tranining sample requires that training sample to be representative of the data you want to estimate redshifts for. However, existing spectroscopic catalogs are not representative of anticipated LSST data. Spectra are easier to obtain for brighter, redder galaxies, which also tend to be at lower redshift. Even DESI, which will obtain large quantities of high quality spectra, won't be as deep as LSST, meaning that LSST will be reliant on non-representative training samples for photo-z estimation. A non-representative training sample would lead to catastrophically poor photo-z estimates for a large portion of LSST galaxies, leading to reduced constraining power and bias in cosmological parameters obtained from LSST data. The image on the right shows what photo-z estimation could look like if this problem is not addressed. Each panel shows the true redshift on the x-axis vs the photo-z estimate on the y-axis. The top panel shows the photo-z estimates for a sample of simulated LSST-like galaxies when a fully representative training sample was used. The bottom panel shows the photo-z estimates for the sample sample of simulated galaies, but when a realistically non-representative training sample is used. In the non-representative case, the outlier fraction reaches nearly 50%. It is thus very important to find a way to improve the photo-z estimates without relying on a large volume of new spectra for training.</p>
+								<h2>Methodology</h2>
+								<p><span class="image left"><img src="images/dc2_training_vs_application.png" alt="" /></span>The basic idea is to see if we can add simulated galaxies to the training sample to cover previously unrepresented regions of photometry and redshift. To test this idea, we use two simulations. The DC2 simulation is a stand-in for real LSST data, and we split this into an LSST-like data sample and a training sample with photometry and redshifts like HSC galaxies with matched spectroscopic redshifts. This is the training sample used to estimate photo-z's in the above plot. Color magnitude diagrams of these two samples are also shown in the figure on the left.  To mimic adding simulated data to a training sample of real data, we need a second simulation that generates galaxy SEDs in an independent way from the DC2 simulation. This difference between the two simulations mimics the difference between one simulation and real data. For this second simulation, we use the Buzzard simulation.</p>
+								<p>To identify regions for augmenting, we use the i-band magnitudes and g-z colors to make a color-magnitude diagram of the training sample. We use three photometric selection criteria: dim galaxies (i-band > 23) blue galaxies, (g-z color < 1.75) or a set of two lines fit to the shape of the top of the CMD of the training sample. These photometric selection criteria can also be combined with a redshift selection criterion. Since the training sample has very few galaxies with redshift above 1.0, we can also select galaxies with z > 1.0. For each set of selection criteria, we select 10,000 galaxies from the Buzzard catalog that satisfy the selection criteria and add them to the initial training sample. We then retrain the photo-z model and estimate a new set of photo-z's for the application sample. We then calculate the outlier fraction, NMAD, bias and catastrophic outlier fraction for the resulting photo-z estimates to compare the different trainings.</p>
+								<h2>Results</h2>
+								<p>The most restrictive set of selection criteria, combing the color and magnitude selection with a redshift selection, produces the best photo-z's, shown below. The training sample obtained with this selection is also shown. The outlier fraction is reduced from the unaugmented value by ~50%. When considering the fact that the outlier fraction of the fully representative training sample isn't actually 0%, the augmentation can recover nearly 70% of the difference with the fully representative case. As a proof-of-concept exercise with fairly simple selection criteria, this is incredibly successful! </p>
+								<div class="box alt">
+											<div class="row gtr-uniform">
+												<div class="col-12"><span class="image fit"><img src="images/best_augmented_training_sample_and_photoz.png" alt="" /></span></div>
+											</div>
+										</div>
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="https://arxiv.org/abs/2402.15551" target="_blank" class="button primary">Link to Arxiv version of the paper</a></li>
+										<li><a href="https://iopscience.iop.org/article/10.3847/2041-8213/ad4039" target="_blank" class="button primary">Link to publisher version of the paper</a></li>
+									</ul>
+								</footer>
 							</section>
 
 					</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<h2>Aliquam sed mauris</h2>
-							<p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</section>
-						<section>
-							<h2>Etiam feugiat</h2>
-							<dl class="alt">
-								<dt>Address</dt>
-								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-								<dt>Phone</dt>
-								<dd>(000) 000-0000 x 0000</dd>
-								<dt>Email</dt>
-								<dd><a href="#">information@untitled.tld</a></dd>
-							</dl>
-							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
-							</ul>
-						</section>
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
 
 			</div>
 
